@@ -49,9 +49,9 @@ get access via http://localhost:3000
 
 #### Users
 - Index `/users` [GET] [token required]
-- Create `/users/create` [POST] [token required]
+- Create `/users/` [POST] [token required]
 - Show `/users/:id` [GET] [token required]
-- Login `/users/Login` [POST] [To get token]
+- Login `/users/login` [POST] [To get token]
 - Delete `/users/:id` [DELETE] [token required]
 
 #### Orders
