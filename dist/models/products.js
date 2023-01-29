@@ -44,8 +44,8 @@ var database_1 = __importDefault(require("../database"));
 var ProductStore = /** @class */ (function () {
     function ProductStore() {
     }
-    ProductStore.prototype.showAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
+    ProductStore.prototype.index = function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -67,7 +67,7 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -89,7 +89,7 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.create = function (p) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, product, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -115,7 +115,7 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.deleteP = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, product, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {

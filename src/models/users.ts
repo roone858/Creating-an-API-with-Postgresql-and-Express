@@ -12,7 +12,7 @@ export type user = {
 
 
 export class UsersStore {
-    async showAll(): Promise<user[]> {
+    async index(): Promise<user[]> {
         const sql = `SELECT * FROM users`
         const conn = await Client.connect()
         const result = await conn.query(sql)

@@ -43,40 +43,14 @@ exports.deleteOrder = exports.createOrder = exports.showOrder = exports.showOrde
 var orders_1 = require("../models/orders");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var orderssMethods = new orders_1.OrdersStore();
-var showOrders = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var order;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, orderssMethods.showAll()];
-            case 1:
-                order = _a.sent();
-                res.json(order);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.showOrders = showOrders;
-var showOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var order;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, orderssMethods.show(req.params.id)];
-            case 1:
-                order = _a.sent();
-                res.json(order);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.showOrder = showOrder;
-var createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var showOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var order, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
-                return [4 /*yield*/, orderssMethods.create(req.body)];
+                return [4 /*yield*/, orderssMethods.index()];
             case 1:
                 order = _a.sent();
                 res.json(order);
@@ -90,16 +64,69 @@ var createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); };
-exports.createOrder = createOrder;
-var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var order;
+exports.showOrders = showOrders;
+var showOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var order, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, orderssMethods.deleteO(req.params.id)];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                return [4 /*yield*/, orderssMethods.show(req.params.orderId)];
             case 1:
                 order = _a.sent();
                 res.json(order);
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_2 = _a.sent();
+                console.log(err_2);
+                res.status(401).send("unvalid token");
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.showOrder = showOrder;
+var createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var order, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                return [4 /*yield*/, orderssMethods.create(req.body)];
+            case 1:
+                order = _a.sent();
+                res.json(order);
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                console.log(err_3);
+                res.status(401).send("unvalid token");
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.createOrder = createOrder;
+var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var order, err_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                return [4 /*yield*/, orderssMethods.deleteO(req.params.orderId)];
+            case 1:
+                order = _a.sent();
+                res.json(order);
+                return [3 /*break*/, 3];
+            case 2:
+                err_4 = _a.sent();
+                console.log(err_4);
+                res.status(401).send("unvalid token");
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

@@ -44,8 +44,8 @@ var database_1 = __importDefault(require("../database"));
 var OrdersStore = /** @class */ (function () {
     function OrdersStore() {
     }
-    OrdersStore.prototype.showAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
+    OrdersStore.prototype.index = function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -67,7 +67,7 @@ var OrdersStore = /** @class */ (function () {
         });
     };
     OrdersStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -89,7 +89,7 @@ var OrdersStore = /** @class */ (function () {
         });
     };
     OrdersStore.prototype.create = function (o) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, order, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -116,7 +116,7 @@ var OrdersStore = /** @class */ (function () {
         });
     };
     OrdersStore.prototype.deleteO = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, order, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {

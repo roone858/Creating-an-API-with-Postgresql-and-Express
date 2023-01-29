@@ -8,7 +8,7 @@ export type Product = {
 
 }
 export class ProductStore {
-    async showAll(): Promise<any> {
+    async index(): Promise<any> {
 
         const sql = 'SELECT * FROM products ORDER BY productId '
         const conn = await Client.connect()

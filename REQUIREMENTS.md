@@ -5,45 +5,45 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index `/products` [GET]
+- Create `/products/create` [POST] [token required]
+- Show `/products/:id` [GET]
+- Delete `/products/:id` [DELETE] [token required]
+
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index `/users` [GET] [token required]
+- Create `/users/create` [POST] [token required]
+- Show `/users/:id` [GET] [token required]
+- Login `/users/Login` [POST] [To get token]
+- Delete `/users/:id` [DELETE] [token required]
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Index `/orders` [GET] [token required]
+- Create `/orders/create` [POST] [token required]
+- Show `/orders/:id` [GET] [token required]
+- Delete `/orders/:id` [DELETE] [token required]
+
+
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+- productId `SERIAL PRIMARY KEY`
+- title `VARCHAR(250)`
+- price `INTEGER`
+- category `VARCHAR(250)`
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- personId `SERIAL PRIMARY KEY`
+- userName `VARCHAR(250)`
+- firstName `VARCHAR(250)`
+- lastName `VARCHAR(250)`
+- email `VARCHAR(250)`
+- password `VARCHAR(250)`
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
-
-CREATE TABLE IF NOT EXISTS orders (
-    id INT PRIMARY KEY,
-    product_id INT NOT NULL REFERENCES products (productid),
-    user_id INT NOT NULL REFERENCES users (personid),
-    quantity int NOT NULL,
-    status varchar(250)
-  );
+- id `SERIAL PRIMARY KEY`
+- product_id `INTEGER NOT NULL REFERENCES products (productid)`
+- user_id `INTEGER NOT NULL REFERENCES users (personid)`
+- quantity `INTEGER NOT NULL`
+- status VARCHAR(250) `NOT NULL`

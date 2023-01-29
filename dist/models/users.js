@@ -45,8 +45,8 @@ var bcrypt_1 = __importDefault(require("bcrypt"));
 var UsersStore = /** @class */ (function () {
     function UsersStore() {
     }
-    UsersStore.prototype.showAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
+    UsersStore.prototype.index = function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -65,7 +65,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -92,7 +92,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.create = function (user) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, hash, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -117,7 +117,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.deleteu = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -144,7 +144,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.check = function (id, password) {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
             var sql, conn, result, user, match;
             return __generator(this, function (_a) {
                 switch (_a.label) {

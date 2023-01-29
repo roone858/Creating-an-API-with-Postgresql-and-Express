@@ -6,7 +6,7 @@ const store = new UsersStore()
 export const showUsers = async (req: Request, res: Response) => {
     try {
         jwt.verify(String(req.headers.token), "my secret")
-        const users = await store.showAll()
+        const users = await store.index()
         res.json(users)
     } catch (err) {
         res.status(401).send("token not valid")

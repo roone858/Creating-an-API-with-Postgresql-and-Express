@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 const productsMethods = new ProductStore()
 
 export const showProducts = async (_req: Request, res: Response) => {
-    const product = await productsMethods.showAll()
+    const product = await productsMethods.index()
     res.json(product)
 }
 
@@ -25,7 +25,12 @@ export const createProduct = async (req: Request, res: Response) => {
 }
 
 export const deleteProduct = async (req: Request, res: Response) => {
-    const product = await productsMethods.deleteP(req.params.id)
-    res.json(product)
+    try{
+        jwt.verify(req.body.token, "my secret")
+    const product = await productsMethods.deleteP(req.params.productId)
+    res.send("The product is deleted")
+    }catch(err){
+        res.status(401).send("unvalid token")  
+    }
 }
 

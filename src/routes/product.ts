@@ -9,6 +9,6 @@ router.get("/:id",showProduct)
 
 router.post("/",createProduct)
 
-router.delete("/:id",deleteProduct)
+router.delete("/:productId",deleteProduct)
 
 export default router;

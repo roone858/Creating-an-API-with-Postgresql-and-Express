@@ -50,7 +50,7 @@ var showUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
-                return [4 /*yield*/, store.showAll()];
+                return [4 /*yield*/, store.index()];
             case 1:
                 users = _a.sent();
                 res.json(users);
