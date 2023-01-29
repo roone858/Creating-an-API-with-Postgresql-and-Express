@@ -2,7 +2,7 @@ import Client from "../database";
 import bcrypt from "bcrypt"
 
 export type user = {
-    personId: Number,
+    personid: Number,
     username: string,
     firstname: string,
     lastname: string,
@@ -39,7 +39,7 @@ export class UsersStore {
             const sql = 'INSERT INTO users( PersonID,UserName,FirstName,LastName,Email,Password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *'
             const conn = await Client.connect()
             const hash = bcrypt.hashSync(user.password, 12)
-            const result = await conn.query(sql, [user.personId, user.username, user.firstname, user.lastname, user.email, hash])
+            const result = await conn.query(sql, [user.personid, user.username, user.firstname, user.lastname, user.email, hash])
             conn.release();
             return result.rows[0]
 

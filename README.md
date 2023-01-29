@@ -1,7 +1,7 @@
 # Storefront Backend Project
 
 ## Prepare env
-- add a `.env` file in the root directory and set the missing `###` environment parameters
+- add a `.ENV` file in the root directory and set the missing `###` environment parameters
 ```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=store
@@ -59,3 +59,4 @@ get access via http://localhost:3000
 - Create `/orders/create` [POST] [token required]
 - Show `/orders/:id` [GET] [token required]
 - Delete `/orders/:id` [DELETE] [token required]
+

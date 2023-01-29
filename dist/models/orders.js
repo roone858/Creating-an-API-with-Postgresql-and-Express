@@ -45,7 +45,7 @@ var OrdersStore = /** @class */ (function () {
     function OrdersStore() {
     }
     OrdersStore.prototype.index = function () {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -67,7 +67,7 @@ var OrdersStore = /** @class */ (function () {
         });
     };
     OrdersStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -89,56 +89,60 @@ var OrdersStore = /** @class */ (function () {
         });
     };
     OrdersStore.prototype.create = function (o) {
-        return __awaiter(this, void 0, Promise, function () {
-            var sql, conn, result, order, err_1;
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, orderProductsSql, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        sql = 'INSERT INTO orders VALUES ($1, $2, $3, $4);';
+                        _a.trys.push([0, 4, , 5]);
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        return [4 /*yield*/, conn
-                                .query(sql, [o.id, o.product_id, o.user_id, o.quantity])];
+                        sql = 'INSERT INTO orders VALUES ($1, $2, $3) ;';
+                        return [4 /*yield*/, conn.query(sql, [o.id, o.user_id, o.status])];
                     case 2:
-                        result = _a.sent();
-                        order = result.rows[0];
-                        console.log(result);
+                        _a.sent();
+                        orderProductsSql = "INSERT INTO order_products (order_id, product_id, quantity) VALUES($1, $2, $3)";
+                        return [4 /*yield*/, conn.query(orderProductsSql, [o.id, o.product_id, o.quantity])];
+                    case 3:
+                        _a.sent();
                         conn.release();
                         return [2 /*return*/, "Order added"];
-                    case 3:
+                    case 4:
                         err_1 = _a.sent();
                         return [2 /*return*/, err_1];
-                    case 4: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
     OrdersStore.prototype.deleteO = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
-            var sql, conn, result, order, err_2;
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, orderProductsSql, sql, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        sql = 'DELETE FROM orders WHERE id=($1)';
+                        _a.trys.push([0, 4, , 5]);
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [id])];
+                        orderProductsSql = "DELETE FROM order_products WHERE order_id=($1)";
+                        return [4 /*yield*/, conn.query(orderProductsSql, [id])];
                     case 2:
+                        _a.sent();
+                        sql = 'DELETE FROM orders WHERE id=($1)';
+                        return [4 /*yield*/, conn.query(sql, [id])];
+                    case 3:
                         result = _a.sent();
-                        order = result.rows[0];
                         conn.release();
                         if (result.rowCount == 0) {
                             return [2 /*return*/, "order not found"];
                         }
                         return [2 /*return*/, "Order with id ".concat(id, " is deleted")];
-                    case 3:
+                    case 4:
                         err_2 = _a.sent();
                         return [2 /*return*/, err_2];
-                    case 4: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

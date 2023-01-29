@@ -57,34 +57,40 @@ var showProducts = function (_req, res) { return __awaiter(void 0, void 0, void 
 }); };
 exports.showProducts = showProducts;
 var showProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, productsMethods.show(req.params.id)];
-            case 1:
-                product = _a.sent();
-                res.json(product);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.showProduct = showProduct;
-var createProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var product, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(req.body.token, "my secret");
-                return [4 /*yield*/, productsMethods.create(req.body)];
+                return [4 /*yield*/, productsMethods.show(req.params.id)];
             case 1:
                 product = _a.sent();
                 res.json(product);
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
-                console.log(err_1);
-                res.status(401).send("unvalid token");
+                res.status(401).json(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.showProduct = showProduct;
+var createProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var product, err_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                return [4 /*yield*/, productsMethods.create(req.body)];
+            case 1:
+                product = _a.sent();
+                res.json(product);
+                return [3 /*break*/, 3];
+            case 2:
+                err_2 = _a.sent();
+                res.status(401).json(err_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -92,20 +98,20 @@ var createProduct = function (req, res) { return __awaiter(void 0, void 0, void 
 }); };
 exports.createProduct = createProduct;
 var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product, err_2;
+    var product, err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(req.body.token, "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
                 return [4 /*yield*/, productsMethods.deleteP(req.params.productId)];
             case 1:
                 product = _a.sent();
-                res.send("The product is deleted");
+                product ? res.send("The product is deleted") : res.send("The product not found");
                 return [3 /*break*/, 3];
             case 2:
-                err_2 = _a.sent();
-                res.status(401).send("unvalid token");
+                err_3 = _a.sent();
+                res.status(401).json(err_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

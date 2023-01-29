@@ -47,3 +47,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id `INTEGER NOT NULL REFERENCES users (personid)`
 - quantity `INTEGER NOT NULL`
 - status VARCHAR(250) `NOT NULL`
+
+#### Order_products
+- order_id `INTEGER NOT NULL REFERENCES orders (id)`
+- product_id `INTEGER NOT NULL REFERENCES products (productid)`
+- quantity `INTEGER NOT NULL`

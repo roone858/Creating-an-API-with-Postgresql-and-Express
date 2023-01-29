@@ -1,10 +1,9 @@
 import Client from "../database";
 
 export type Product = {
-    productId: Number;
+    productid: Number;
     title: string;
-    price: Number;
-    category: string
+    price: Number
 
 }
 export class ProductStore {
@@ -21,7 +20,7 @@ export class ProductStore {
     }
     async show(id: string): Promise<any> {
 
-        const sql = 'SELECT * FROM products WHERE productId=($1)'
+        const sql = 'SELECT * FROM products WHERE productId=($1) ;'
         const conn = await Client.connect()
         const result = await conn.query(sql, [id])
         conn.release()
@@ -34,11 +33,11 @@ export class ProductStore {
 
     async create(p: Product): Promise<Product> {
         try {
-            const sql = 'INSERT INTO products (productId, title, price ,category) VALUES($1, $2, $3,$4) RETURNING *'
+            const sql = 'INSERT INTO products (productId, title, price ) VALUES($1, $2, $3) RETURNING * ;'
 
             const conn = await Client.connect()
             const result = await conn
-                .query(sql, [p.productId, p.title, p.price, p.category])
+                .query(sql, [p.productid, p.title, p.price])
             const product = result.rows[0]
             conn.release()
             return product
@@ -50,16 +49,14 @@ export class ProductStore {
     async deleteP(id: string): Promise<any> {
 
         try {
-            const sql = 'DELETE FROM products WHERE productId=($1)'
+            const sql = 'DELETE FROM products WHERE productId=($1) RETURNING * '
             const conn = await Client.connect()
             const result = await conn.query(sql, [id])
-            const product = result.rows[0]
             conn.release()
-
             if (result.rowCount == 0) {
-                return "product not found"
+                return false
             }
-            return `product with id ${id} is deleted`
+            return true
         } catch (err) {
             return err
         }

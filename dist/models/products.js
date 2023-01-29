@@ -45,7 +45,7 @@ var ProductStore = /** @class */ (function () {
     function ProductStore() {
     }
     ProductStore.prototype.index = function () {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -67,12 +67,12 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        sql = 'SELECT * FROM products WHERE productId=($1)';
+                        sql = 'SELECT * FROM products WHERE productId=($1) ;';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
@@ -89,18 +89,18 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.create = function (p) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, product, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'INSERT INTO products (productId, title, price ,category) VALUES($1, $2, $3,$4) RETURNING *';
+                        sql = 'INSERT INTO products (productId, title, price ) VALUES($1, $2, $3) RETURNING * ;';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn
-                                .query(sql, [p.productId, p.title, p.price, p.category])];
+                                .query(sql, [p.productid, p.title, p.price])];
                     case 2:
                         result = _a.sent();
                         product = result.rows[0];
@@ -115,25 +115,24 @@ var ProductStore = /** @class */ (function () {
         });
     };
     ProductStore.prototype.deleteP = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
-            var sql, conn, result, product, err_2;
+        return __awaiter(this, void 0, void 0, function () {
+            var sql, conn, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'DELETE FROM products WHERE productId=($1)';
+                        sql = 'DELETE FROM products WHERE productId=($1) RETURNING * ';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
-                        product = result.rows[0];
                         conn.release();
                         if (result.rowCount == 0) {
-                            return [2 /*return*/, "product not found"];
+                            return [2 /*return*/, false];
                         }
-                        return [2 /*return*/, "product with id ".concat(id, " is deleted")];
+                        return [2 /*return*/, true];
                     case 3:
                         err_2 = _a.sent();
                         return [2 /*return*/, err_2];

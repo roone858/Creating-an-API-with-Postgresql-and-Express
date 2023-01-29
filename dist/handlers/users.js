@@ -57,7 +57,7 @@ var showUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
-                res.status(401).send("token not valid");
+                res.status(401).json(err_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -78,7 +78,7 @@ var showUser = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 return [3 /*break*/, 3];
             case 2:
                 err_2 = _a.sent();
-                res.send("invalid token try to log in from 'users/login' to get token'");
+                res.status(401).json(err_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -99,7 +99,7 @@ var createUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [3 /*break*/, 3];
             case 2:
                 err_3 = _a.sent();
-                res.send("invalid token try to log in from 'users/login' to get token'");
+                res.status(401).json(err_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -120,7 +120,7 @@ var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [3 /*break*/, 3];
             case 2:
                 err_4 = _a.sent();
-                res.send("invalid token try to log in from 'users/login' to get token'");
+                res.status(401).json(err_4);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -145,8 +145,7 @@ var checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 return [3 /*break*/, 3];
             case 2:
                 err_5 = _a.sent();
-                console.log(err_5);
-                res.status(404).send("sorry Could not Find The User ");
+                res.status(401).json(err_5);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

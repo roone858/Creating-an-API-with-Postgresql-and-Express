@@ -46,7 +46,7 @@ var UsersStore = /** @class */ (function () {
     function UsersStore() {
     }
     UsersStore.prototype.index = function () {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -65,7 +65,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.show = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -92,7 +92,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.create = function (user) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, hash, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -103,7 +103,7 @@ var UsersStore = /** @class */ (function () {
                     case 1:
                         conn = _a.sent();
                         hash = bcrypt_1["default"].hashSync(user.password, 12);
-                        return [4 /*yield*/, conn.query(sql, [user.personId, user.username, user.firstname, user.lastname, user.email, hash])];
+                        return [4 /*yield*/, conn.query(sql, [user.personid, user.username, user.firstname, user.lastname, user.email, hash])];
                     case 2:
                         result = _a.sent();
                         conn.release();
@@ -117,7 +117,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.deleteu = function (id) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -144,7 +144,7 @@ var UsersStore = /** @class */ (function () {
         });
     };
     UsersStore.prototype.check = function (id, password) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, user, match;
             return __generator(this, function (_a) {
                 switch (_a.label) {

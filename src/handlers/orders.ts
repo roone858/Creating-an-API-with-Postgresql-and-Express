@@ -9,8 +9,8 @@ export const showOrders = async (req: Request, res: Response) => {
         const order = await orderssMethods.index()
         res.json(order)
     } catch (err) {
-        console.log(err)
-        res.status(401).send("unvalid token")
+        res.status(401).json(err)
+
     }
 }
 
@@ -20,8 +20,9 @@ export const showOrder = async (req: Request, res: Response) => {
         const order = await orderssMethods.show(req.params.orderId)
         res.json(order)
     } catch (err) {
-        console.log(err)
-        res.status(401).send("unvalid token")
+        
+        res.status(401).json(err)
+
     }
 }
 
@@ -31,8 +32,8 @@ export const createOrder = async (req: Request, res: Response) => {
         const order = await orderssMethods.create(req.body)
         res.json(order)
     } catch (err) {
-        console.log(err)
-        res.status(401).send("unvalid token")
+        res.status(401).json(err)
+
     }
 }
 
@@ -42,8 +43,8 @@ export const deleteOrder = async (req: Request, res: Response) => {
         const order = await orderssMethods.deleteO(req.params.orderId)
         res.json(order)
     } catch (err) {
-        console.log(err)
-        res.status(401).send("unvalid token")
+        res.status(401).json(err)
+
     }
 }
 

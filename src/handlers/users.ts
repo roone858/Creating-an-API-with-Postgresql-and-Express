@@ -9,7 +9,8 @@ export const showUsers = async (req: Request, res: Response) => {
         const users = await store.index()
         res.json(users)
     } catch (err) {
-        res.status(401).send("token not valid")
+        res.status(401).json(err)
+
     }
 
 }
@@ -19,7 +20,7 @@ export const showUser = async (req: Request, res: Response) => {
         const user = await store.show(req.params.personId)
         res.json(user)
     } catch (err) {
-        res.send("invalid token try to log in from 'users/login' to get token'")
+        res.status(401).json(err)
     }
 
 }
@@ -30,7 +31,8 @@ export const createUser = async (req: Request, res: Response) => {
         res.send(user)
 
     } catch (err) {
-        res.send("invalid token try to log in from 'users/login' to get token'")
+        res.status(401).json(err)
+
     }
 
 }
@@ -41,7 +43,7 @@ export const deleteUser = async (req: Request, res: Response) => {
         res.json(user)
 
     } catch (err) {
-        res.send("invalid token try to log in from 'users/login' to get token'")
+        res.status(401).json(err)
     }
 
 }
@@ -56,10 +58,7 @@ export const checkUser = async (req: Request, res: Response) => {
         b ? res.send("correct Welcome back!" + jwt.sign(user, 'my secret')) : res.send("the password is uwrong")
 
     } catch (err) {
-        console.log(err)
-        res.status(404).send("sorry Could not Find The User ")
-
-
+        res.status(401).json(err)
     }
 
 }

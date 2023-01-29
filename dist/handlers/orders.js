@@ -57,8 +57,7 @@ var showOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
-                console.log(err_1);
-                res.status(401).send("unvalid token");
+                res.status(401).json(err_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -79,8 +78,7 @@ var showOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 return [3 /*break*/, 3];
             case 2:
                 err_2 = _a.sent();
-                console.log(err_2);
-                res.status(401).send("unvalid token");
+                res.status(401).json(err_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -101,8 +99,7 @@ var createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 return [3 /*break*/, 3];
             case 2:
                 err_3 = _a.sent();
-                console.log(err_3);
-                res.status(401).send("unvalid token");
+                res.status(401).json(err_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -123,8 +120,7 @@ var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 return [3 /*break*/, 3];
             case 2:
                 err_4 = _a.sent();
-                console.log(err_4);
-                res.status(401).send("unvalid token");
+                res.status(401).json(err_4);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
