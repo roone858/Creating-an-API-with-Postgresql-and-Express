@@ -1,5 +1,10 @@
 import Client from "../database";
 import bcrypt from "bcrypt"
+import dotenv from 'dotenv'
+
+
+dotenv.config()
+const slatRound=Number(process.env.SALT_ROUNDS)
 
 export type user = {
     personid: Number,
@@ -38,7 +43,7 @@ export class UsersStore {
         try {
             const sql = 'INSERT INTO users( PersonID,UserName,FirstName,LastName,Email,Password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *'
             const conn = await Client.connect()
-            const hash = bcrypt.hashSync(user.password, 12)
+            const hash = bcrypt.hashSync(user.password,slatRound )
             const result = await conn.query(sql, [user.personid, user.username, user.firstname, user.lastname, user.email, hash])
             conn.release();
             return result.rows[0]

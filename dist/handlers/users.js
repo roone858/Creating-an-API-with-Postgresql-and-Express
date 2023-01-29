@@ -42,6 +42,9 @@ exports.__esModule = true;
 exports.checkUser = exports.deleteUser = exports.createUser = exports.showUser = exports.showUsers = void 0;
 var users_1 = require("../models/users");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
+var tokenSecret = String(process.env.TOKEN_SECRET);
 var store = new users_1.UsersStore();
 var showUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users, err_1;
@@ -49,7 +52,7 @@ var showUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, store.index()];
             case 1:
                 users = _a.sent();
@@ -70,7 +73,7 @@ var showUser = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, store.show(req.params.personId)];
             case 1:
                 user = _a.sent();
@@ -91,7 +94,7 @@ var createUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, store.create(req.body)];
             case 1:
                 user = _a.sent();
@@ -112,7 +115,7 @@ var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, store.deleteu(req.params.personId)];
             case 1:
                 user = _a.sent();
@@ -137,11 +140,10 @@ var checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 1:
                 b = _a.sent();
                 user = {
-                    personid: req.body.personId,
+                    personid: req.body.personid,
                     password: req.body.password
                 };
-                console.log(user);
-                b ? res.send("correct Welcome back!" + jsonwebtoken_1["default"].sign(user, 'my secret')) : res.send("the password is uwrong");
+                b ? res.send("correct Welcome back!" + jsonwebtoken_1["default"].sign(user, tokenSecret)) : res.send("the password is uwrong");
                 return [3 /*break*/, 3];
             case 2:
                 err_5 = _a.sent();

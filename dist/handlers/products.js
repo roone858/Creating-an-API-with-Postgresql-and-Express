@@ -42,6 +42,9 @@ exports.__esModule = true;
 exports.deleteProduct = exports.createProduct = exports.showProduct = exports.showProducts = void 0;
 var products_1 = require("../models/products");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
+var tokenSecret = String(process.env.TOKEN_SECRET);
 var productsMethods = new products_1.ProductStore();
 var showProducts = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var product;
@@ -82,7 +85,7 @@ var createProduct = function (req, res) { return __awaiter(void 0, void 0, void 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, productsMethods.create(req.body)];
             case 1:
                 product = _a.sent();
@@ -103,7 +106,7 @@ var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, productsMethods.deleteP(req.params.productId)];
             case 1:
                 product = _a.sent();

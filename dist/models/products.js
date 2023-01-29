@@ -90,7 +90,7 @@ var ProductStore = /** @class */ (function () {
     };
     ProductStore.prototype.create = function (p) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, product, err_1;
+            var sql, conn, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -103,12 +103,11 @@ var ProductStore = /** @class */ (function () {
                                 .query(sql, [p.productid, p.title, p.price])];
                     case 2:
                         result = _a.sent();
-                        product = result.rows[0];
                         conn.release();
-                        return [2 /*return*/, product];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_1 = _a.sent();
-                        throw new Error("Could not add new product ".concat(p.title, ". ").concat(err_1));
+                        return [2 /*return*/, err_1];
                     case 4: return [2 /*return*/];
                 }
             });

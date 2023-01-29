@@ -10,9 +10,8 @@ POSTGRES_PASSWORD=1234
 POSTGRES_TEST_DB=store_test
 POSTGRES_PORT=5432
 ENV=dev
-BCRYPT_PASSWORD=your-secret-password 
-SALT_ROUNDS=10
-
+TOKEN_SECRET=my secret
+SALT_ROUNDS=12
 ```
 ### Running Ports 
 After start up, the server will start on port `3000` and the database on port `5432`
@@ -42,7 +41,7 @@ Navigate to the root directory and run the command below to migrate the database
 get access via http://localhost:3000
 #### Products
 - Index `/products` [GET]
-- Create `/products/create` [POST] [token required]
+- Create `/products/` [POST] [token required]
 - Show `/products/:id` [GET]
 - Delete `/products/:id` [DELETE] [token required]
 

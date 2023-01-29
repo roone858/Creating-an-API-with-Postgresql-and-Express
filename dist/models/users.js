@@ -42,6 +42,9 @@ exports.__esModule = true;
 exports.UsersStore = void 0;
 var database_1 = __importDefault(require("../database"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
+var slatRound = Number(process.env.SALT_ROUNDS);
 var UsersStore = /** @class */ (function () {
     function UsersStore() {
     }
@@ -102,7 +105,7 @@ var UsersStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        hash = bcrypt_1["default"].hashSync(user.password, 12);
+                        hash = bcrypt_1["default"].hashSync(user.password, slatRound);
                         return [4 /*yield*/, conn.query(sql, [user.personid, user.username, user.firstname, user.lastname, user.email, hash])];
                     case 2:
                         result = _a.sent();

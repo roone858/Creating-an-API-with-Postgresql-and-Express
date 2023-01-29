@@ -42,6 +42,9 @@ exports.__esModule = true;
 exports.deleteOrder = exports.createOrder = exports.showOrder = exports.showOrders = void 0;
 var orders_1 = require("../models/orders");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
+var tokenSecret = String(process.env.TOKEN_SECRET);
 var orderssMethods = new orders_1.OrdersStore();
 var showOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var order, err_1;
@@ -49,7 +52,7 @@ var showOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, orderssMethods.index()];
             case 1:
                 order = _a.sent();
@@ -70,7 +73,7 @@ var showOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, orderssMethods.show(req.params.orderId)];
             case 1:
                 order = _a.sent();
@@ -91,7 +94,7 @@ var createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, orderssMethods.create(req.body)];
             case 1:
                 order = _a.sent();
@@ -112,7 +115,7 @@ var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                jsonwebtoken_1["default"].verify(String(req.headers.token), "my secret");
+                jsonwebtoken_1["default"].verify(String(req.headers.token), tokenSecret);
                 return [4 /*yield*/, orderssMethods.deleteO(req.params.orderId)];
             case 1:
                 order = _a.sent();
