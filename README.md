@@ -56,7 +56,7 @@ get access via http://localhost:3000
 
 #### Orders
 - Index `/orders` [GET] [token required]
-- Create `/orders/create` [POST] [token required]
+- Create `/orders/` [POST] [token required]
 - Show `/orders/:id` [GET] [token required]
 - Delete `/orders/:id` [DELETE] [token required]
 
