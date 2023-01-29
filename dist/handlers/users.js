@@ -133,7 +133,7 @@ var checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, store.check(req.body.personId, req.body.password)];
+                return [4 /*yield*/, store.check(req.body.personid, req.body.password)];
             case 1:
                 b = _a.sent();
                 user = {

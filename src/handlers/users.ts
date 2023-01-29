@@ -47,7 +47,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 }
 export const checkUser = async (req: Request, res: Response) => {
     try {
-        const b = await store.check(req.body.personId, req.body.password)
+        const b = await store.check(req.body.personid, req.body.password)
         let user = {
             personid: req.body.personId,
             password: req.body.password
