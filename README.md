@@ -59,3 +59,5 @@ get access via http://localhost:3000
 - Show `/orders/:id` [GET] [token required]
 - Delete `/orders/:id` [DELETE] [token required]
 
+```
+- `npm run test` to run all tests
