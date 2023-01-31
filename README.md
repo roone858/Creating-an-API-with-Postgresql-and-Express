@@ -22,6 +22,7 @@ After start up, the server will start on port `3000` and the database on port `5
     - `CREATE USER shopping_user WITH PASSWORD 'password123';`
 - In psql run the following to create the  database
     - `CREATE DATABASE store;`
+    - `CREATE DATABASE store_test;`
 - Connect to the databases and grant all privileges
     - `\c store`
     

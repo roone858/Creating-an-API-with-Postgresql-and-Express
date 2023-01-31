@@ -30,7 +30,7 @@ export const showUser = async (req: Request, res: Response) => {
 }
 export const createUser = async (req: Request, res: Response) => {
     try {
-        jwt.verify(String(req.headers.token), tokenSecret)
+       
         const user = await store.create(req.body)
         res.send(user)
     } catch (err) {

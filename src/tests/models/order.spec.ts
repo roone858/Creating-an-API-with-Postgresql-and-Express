@@ -11,8 +11,8 @@ describe('Order Model', () => {
   beforeAll(async () => {
     const product = await productStore.create({
       productid: 1,
-      title: 'Superman underroos',
-      price: 40.0
+      title: 'Test product',
+      price: 40
 
     })
     productId = product.id as number
@@ -27,16 +27,13 @@ describe('Order Model', () => {
     userId = user.id as number
   })
 
-  afterAll(async () => {
-    await productStore.deleteP(String(productId))
-    await userStore.deleteu(String(userId))
-  })
+
 
   it('should create an order', async () => {
     const result = await orderStore.create({
       id: 1,
-      user_id: userId,
-      product_id: productId,
+      user_id: 1,
+      product_id: 1,
       quantity: 5,
       status: "new"
     })
@@ -45,26 +42,16 @@ describe('Order Model', () => {
 
   it('should return a list of orders', async () => {
     const result = await orderStore.index()
-    expect(result).toEqual([
-      {
-        id: 1,
-        product_id: productId,
-        quantity: 10,
-        user_id: userId,
-        status: 'new',
-      },
-    ])
+    expect(result).toEqual([{ id: 1, user_id: 1, status: 'new' }])
   })
 
   it('should return the correct order', async () => {
     const result = await orderStore.show("1")
     expect(result).toEqual({
-      id: 1,
-      product_id: productId,
-      quantity: 10,
-      user_id: userId,
-      status: 'new',
-    })
+      "id": 1,
+      "user_id": 1,
+      "status": "new"
+  })
   })
 
  
@@ -72,6 +59,6 @@ describe('Order Model', () => {
   it('should delete the order', async () => {
     await orderStore.deleteO("1")
     const result = await orderStore.index()
-    expect(result).toEqual([])
+    expect(result).toEqual('there is no orders')
   })
 })

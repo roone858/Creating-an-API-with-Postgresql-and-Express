@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS orders (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users (personid),
-    status VARCHAR(250) NOT NULL
-);

@@ -4,7 +4,6 @@ import dotenv from 'dotenv'
 
 
 dotenv.config()
-
 const slatRound=Number(process.env.SALT_ROUNDS)
 
 export type user = {
@@ -38,7 +37,7 @@ export class UsersStore {
 
             return err
         }
-        
+
     }
     async create(user: user): Promise<any> {
         try {
