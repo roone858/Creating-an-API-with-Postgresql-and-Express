@@ -10,17 +10,18 @@ const store = new UsersStore()
 
 export const showUsers = async (req: Request, res: Response) => {
     try {
-        jwt.verify(String(req.headers.token), tokenSecret)
+
         const users = await store.index()
         res.json(users)
     } catch (err) {
+
         res.status(401).json(err)
     }
 
 }
 export const showUser = async (req: Request, res: Response) => {
     try {
-        jwt.verify(String(req.headers.token), tokenSecret)
+      
         const user = await store.show(req.params.personId)
         res.json(user)
     } catch (err) {
@@ -30,7 +31,6 @@ export const showUser = async (req: Request, res: Response) => {
 }
 export const createUser = async (req: Request, res: Response) => {
     try {
-       
         const user = await store.create(req.body)
         res.send(user)
     } catch (err) {
@@ -55,7 +55,7 @@ export const checkUser = async (req: Request, res: Response) => {
             personid: req.body.personid,
             password: req.body.password
         }
-        b ? res.send("correct Welcome back!" + jwt.sign(user, tokenSecret)) : res.send("the password is uwrong")
+        b ? res.send(jwt.sign(user, tokenSecret)) : res.send("the password is wrong")
     } catch (err) {
         res.status(401).json(err)
     }
